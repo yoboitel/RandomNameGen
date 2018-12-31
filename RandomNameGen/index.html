@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Funny Name Generator</title>
+    <link rel="stylesheet" type="text/css" href="theme.css">
+  </head>
+  <body>
+
+  	<center><h1>Funny Name Generator</h1></center>
+
+  	
+  		<center>
+  			<div class="vanilla" data-tilt>
+  			<img src="question.png" id="id" border="3px" style="border-radius: 100px;border-color:#88E3BD;box-shadow: 0px 10px 25px grey">
+  			</div>
+  		</center>
+  	
+
+  	<center><h2 id="tv_nom">Tadaa ! Patrick Biscotte is so funny</h2></center>
+
+  	<center><button onclick="callImage()" type="button">Let's go</button></center>
+
+  	<script>
+  		function callImage() {
+  		document.getElementById('id').style.borderRadius = '50%';
+  		document.getElementById('id').style.border = "3px solid #88E3BD";
+
+  		var str1 = "https://randomuser.me/api/portraits/men/";
+		var str2 = Math.floor(Math.random() * 99) + 1;
+		var str3 = ".jpg";
+		var res = str1.concat(str2, str3);
+
+		var header = document.querySelector('header');
+		var requestURL = 'https://www.behindthename.com/api/random.json?usage=fre&gender=m&number=1&key=an272660118';
+		var request = new XMLHttpRequest();
+		request.open('GET', requestURL);
+		request.responseType = 'json';
+		request.send();
+		request.onload = function() {
+  		var superHeroes = request.response;
+  		populateHeader(superHeroes);
+
+  		function populateHeader(jsonObj) {
+   			document.getElementById('tv_nom').textContent = "Tadaa ! " + jsonObj['names'] + " is so funny";
+  		}
+
+		} 
+		console.log(res);
+  		document.getElementById("id").src=res;
+
+		}
+	</script>
+	<script type="text/javascript" src="vanilla-tilt.js"></script>
+
+  </body>
+</html>
